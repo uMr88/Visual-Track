@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2>Upload</h2>
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <input type="file" name="document">
+    <button type="submit">Upload file</button>
+  </form>
+  {% if url %}
+    <p>Uploaded file: <a href="{{ url }}">{{ url }}</a></p>
+  {% endif %}
+
+  <form action="/dashboard/external/" method="post">
+    {% csrf_token %}
+    Input Text:
+    <input type="text" name="param" required><br><br>
+    {{data_external}}<br><br>
+    {{data1}}
+    <br><br>
+    
+    <input type="submit" value="Execute External Python Script">
+</form>
+
+{% endblock %}
